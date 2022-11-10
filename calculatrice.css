@@ -1,0 +1,45 @@
+#calculatrice {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(6, 50px);
+    grid-template-areas:
+    "resultat resultat resultat resultat" 
+    "neuf huit sept clear"
+    "six cinq quatre clear"
+    "trois deux un clear"
+    "zero zero plus moins"
+    "egale egale multiplie divise";
+    width:400px
+}
+#calculatrice > div {
+    background-color: aquamarine;
+    margin:1px;
+    border:solid 1px mediumseagreen;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+#calculatrice > div:hover {
+    background-color: mediumseagreen;
+}
+#calculatrice > div:active {
+    background-color: mediumaquamarine;
+}
+#un {grid-area: un;}
+#deux {grid-area: deux;}
+#trois {grid-area: trois;}
+#quatre {grid-area: quatre;}
+#cinq {grid-area: cinq;}
+#six {grid-area: six;}
+#sept {grid-area: sept;}
+#huit {grid-area: huit;}
+#neuf {grid-area: neuf;}
+#zero {grid-area: zero;}
+#egale {grid-area: egale;}
+#clear {grid-area: clear;}
+#plus {grid-area: plus;}
+#moins {grid-area: moins;}
+#multiplie {grid-area: multiplie;}
+#divise {grid-area: divise;}
+#resultat {grid-area: resultat;background-color: white !important;}
