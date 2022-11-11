@@ -10,30 +10,40 @@
 
 const navbar = document.querySelector("nav");
 const improvise = document.getElementById("imgImprovise");
-const popup = document.querySelector(".pop-up");
-const buttonPopup = querySelector(".button-container input");
-console.log(improvise);
+
+const popup = document.getElementById("popup");
+console.log(popup);
+
+const closeBtn = document.getElementById("closeBtn");
+
+let popupAppearance = true;
 
 window.addEventListener('scroll', () => {
-    //let scrollWindow = scrollY;
-    //console.log(scrollWindow);
+    //effet sur la navbar
     if (scrollY > 90) {
-        navbar.styles.height = 40 + "px";
+        navbar.style.height = 40 + "px";
     }
-    
-    if (scrollY > 300) {
-        improvise.styles.transform =  translateX(0);
-        improvise.styles.opacity = 1;
+    else {navbar.style.height = 90 + "px";}
+   
+    //valeur du scroll en pourcentage
+    let scrollValue = (window.scrollY + window.innerHeight) / document.body.offsetHeight;
+    console.log(scrollValue);
+
+    //effet sur l'image
+    if (scrollValue > 0.45) {
+        improvise.style.transform =  "translateX(0)";
+        improvise.style.opacity = 1;
     }
 
-    if (scrollY > 1000) {
-        improvise.styles.transform =  translateX(0);
-        improvise.styles.opacity = 1;
+    //effet sur le popup
+    if (scrollValue > 0.85 && popupAppearance == true) {
+        popup.style.transform =  "translateX(0)";
+        popup.style.opacity = 1;
     }
 })
 
-buttonPopup.addEventListener('click', () => {
-    buttonPopup.styles.opacity =  0;
-    buttonPopup.styles.transform = "translateX(400px)";
-    buttonPopup.remove();
+closeBtn.addEventListener('click', () => {
+    popup.style.transform =  "translateX(500px)";
+    popup.style.opacity = 0; 
+    popupAppearance = false;
 })

@@ -81,6 +81,7 @@ p::first-letter {
 }
 .adapt img {
   width: 50%;
+  min-width: 50%;
 }
 .improvise {
   padding: 1rem;
@@ -93,6 +94,7 @@ p::first-letter {
 }
 #imgImprovise {
   width: 60%;
+  min-width: 60%;
   padding: 2rem;
   opacity: 0;
   transform: translateX(-200px);
