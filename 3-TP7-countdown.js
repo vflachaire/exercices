@@ -1,25 +1,50 @@
 const form = document.querySelector("form");
 const countdown = document.getElementById("countdown");
 const startValue = document.getElementById("start-value");
+const h1 = document.querySelector ("h1");
+let countdownValue;
 
-const displayCountdown = ((sec) => {
-    let minutes = Math.floor(sec / 60);
-    let secondes = sec % 60;
+let activeCountdown; 
+
+const displayCountdown = (() => {
+    if (countdownValue > 0) countdownValue -- ;
+    let minutes = Math.floor(countdownValue / 60);
+    let secondes = countdownValue % 60;
     countdown.innerText = minutes + " : " + secondes;
+    console.log(countdownValue);
 })
 
-const activeCountdown = ((secondsCountdown) => {
-    setInterval(() => {
-        if (secondsCountdown > 0) countdownValue -- ;
-        displayCountdown(countdownValue)
-    }, 1000);
-})
+
+
 
 form.addEventListener("submit", (e) => {
+    if (activeCountdown) {clearInterval(activeCountdown)};
     e.preventDefault();
-    let start = startValue.value * 60;
-    let countdownValue = start;
-    console.log(countdownValue);
-    activeCountdown(start);
+    if (isNaN(startValue.value)) {
+        h1.innerText = "Indiquez un nombre !"
+    }
+    else {
+
+        let start = startValue.value * 60;
+        countdownValue = start;
+        console.log(countdownValue);
+        
+       activeCountdown =  setInterval(() => 
+        {
+            if (countdownValue <= 0)
+            clearInterval(activeCountdown);
+            if (countdownValue > 0)            countdownValue -- ;
+            let minutes = Math.floor(countdownValue / 60);
+            let secondes = countdownValue % 60;
+            if (secondes < 10 ) secondes = `0${secondes}`
+            countdown.innerText = `${minutes} : ${secondes}`;
+            console.log(countdownValue);
+        },100);
+    }
+
+    // h1.addEventListener ("click",() => {
+    //     console.log("clear");
+    //     clearInterval(activeCountdown);
+    // })
 })
 
